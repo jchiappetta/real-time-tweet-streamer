@@ -1,5 +1,5 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const util = require("util");
 const request = require("request");
 const path = require("path");
@@ -11,8 +11,8 @@ let port = process.env.PORT || 3000;
 const post = util.promisify(request.post);
 const get = util.promisify(request.get);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const server = http.createServer(app);
 const io = socketIo(server);
