@@ -34,11 +34,11 @@ const reducer = (state, action) => {
 const RuleList = () => {
   const initialState = { rules: [], newRule: "", isLoading: false, errors: [] };
   const [state, dispatch] = useReducer(reducer, initialState);
+  // eslint-disable-next-line
   const exampleRule = "from:twitterdev has:links";
-  const ruleMeaning = `This example rule will match Tweets posted by 
-     TwtterDev containing links`;
-  const operatorsURL =
-    "https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule";
+  // eslint-disable-next-line
+  const ruleMeaning = `This example rule will match Tweets posted by TwitterDev containing links`;
+  const operatorsURL = "https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/integrate/build-a-rule";
   const rulesURL = "/api/rules";
 
   const createRule = async (e) => {

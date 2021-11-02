@@ -10,6 +10,7 @@
     "axios": "^0.19.1",
     "body-parser": "^1.19.0",
     "concurrently": "^5.1.0",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "http": "0.0.1-security",
     "http-proxy-middleware": "^1.0.3",
@@ -31,8 +32,8 @@
   },
   "scripts": {
     "start": "npm run development",
-    "development": "NODE_ENV=development concurrently --kill-others \"npm run client\" \"npm run server\"",
-    "production": "npm run build && NODE_ENV=production npm run server",
+    "development": "SET NODE_ENV=development concurrently --kill-others \"npm run client\" \"npm run server\"",
+    "production": "npm run build && SET NODE_ENV=production npm run server",
     "client": "react-scripts start",
     "server": "node server/server.js",
     "build": "react-scripts build",
@@ -56,6 +57,5 @@
   },
   "engines": {
     "node": "10.x"
-  },
-  "devDependencies": {}
+  }
 }
