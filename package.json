@@ -31,6 +31,7 @@
     "util": "^0.12.2"
   },
   "scripts": {
+    "dev" : "concurrently \"npm run server\" \"npm run client\"",
     "start": "npm run development",
     "development": "SET NODE_ENV=development concurrently --kill-others \"npm run client\" \"npm run server\"",
     "production": "npm run build && SET NODE_ENV=production npm run server",
