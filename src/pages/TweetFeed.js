@@ -1,8 +1,8 @@
 import React, { useEffect, useReducer } from 'react';
-import Tweet from './Tweet';
 import socketIOClient from 'socket.io-client';
-import ErrorMessage from './ErrorMessage';
-import Spinner from './Spinner';
+import Tweet from '../components/Tweet';
+import ErrorMessage from '../components/ErrorMessage';
+import Spinner from '../components/Spinner';
 
 const reducer = (state, action) => {
     switch (action.type) {
