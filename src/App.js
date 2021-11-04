@@ -22,7 +22,7 @@ const App = () => (
         <div className="ui container">
             <Router>
                 <Navbar />
-                <Route exact path="/" component={RuleList} />
+                <Route exact path="/" component={TweetFeed} />
                 <Route exact path="/rules" component={RuleList} />
                 <Route exact path="/tweets" component={TweetFeed} />
                 <Route exact path="/status" component={StatusPages} />
