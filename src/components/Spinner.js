@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Spinner = () => (
-    <div>
+    <div className="content">
         <div className="ui active centered large inline loader">
             <img
                 className="ui image"
