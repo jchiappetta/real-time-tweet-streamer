@@ -21,6 +21,13 @@ const StatusPages = () => {
         }
     };
 
+    const checkStatus = (description) => {
+        if (description !== 'All Systems Operational') {
+            return true;
+        };
+        return false;
+    };
+
     useEffect(() => { 
         fetchStatusPages();
     }, []);
@@ -30,13 +37,16 @@ const StatusPages = () => {
             <StatusItem
                 name={sp?.page?.name}
                 description={sp?.status?.description}
+                updated_at={sp?.page?.updated_at}
                 url={sp?.page?.url}
+                color={checkStatus(sp?.status?.description) ? "red" :"green"}
+                icon={checkStatus(sp?.status?.description) ? "ban" : "check"}
             />
         ));
 
     if (isLoading) return <Loader />;
     return (
-        <div className="ui grid container">
+        <div className="ui centered grid container">
             {statusPagesList()}
         </div>
     );

@@ -1,17 +1,39 @@
 import React from 'react';
-import { AiOutlineCheck, AiFillInfoCircle } from 'react-icons/ai';
 
-// TODO : Add semantic styling and implement a failure check -> !All Systems Operational
-const StatusItem = ({ name, description, url }) => (
-    <div className="four wide column">
-        <h4>{name}</h4>
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-            <AiOutlineCheck color="green" size={16} />
-            <p style={{ color: "green", paddingLeft: 6 }}>{description}</p>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', paddingTop: 6  }}>
-            <AiFillInfoCircle color="#4183c4" size={22} style={{ paddingRight: 6 }} />
-            <a href={url ||  "#"} target='_blank' rel="noopener noreferrer">More Info</a>
+const style = { 
+    display: 'flex', 
+    flexDirection: 'row', 
+    flexWrap: 'nowrap', 
+    alignContent: 'center', 
+    justifyContent: 'center', 
+    alignItems:'center', 
+    padding: 4 
+};
+
+const StatusItem = ({ name, description, updated_at, url, color, icon }) => (
+    <div className="ui four wide column">
+        <div className="ui list">
+            <h4>{name}</h4>
+            <div className="item" style={style}>
+                <i className={`large ${color} middle aligned ${icon} icon`}></i>
+                <div className="content">
+                    <div className={`ui label ${color}`}>
+                        {description}
+                    </div>
+                </div>
+            </div>
+            <div className="item" style={style}>
+                <i className="large middle aligned calendar alternate outline icon"></i>
+                <div className="content">
+                    {new Date(updated_at).toUTCString()}
+                </div>
+            </div>
+            <div className="item" style={style}>
+                <i className="large blue middle aligned info circle icon"></i>
+                <a className="content" href={url || '#'} target="_blank" rel="noopener noreferrer">
+                    More Info
+                </a>
+            </div>
         </div>
     </div>
 );
