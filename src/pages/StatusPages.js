@@ -4,11 +4,41 @@ import StatusItem from '../components/StatusItem';
 import Loader from '../components/Loader';
 import exchanges from '../constants/exchanges';
 
-// TODO : add a refresh interval and/or button to refresh the status
-// TODO : add a separate axios request for bitfinex -> https://api-pub.bitfinex.com/v2/platform/status
+const style = { 
+    display: 'flex', 
+    flexDirection: 'column', 
+    flexWrap: 'nowrap', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    alignContent: 'center' 
+};
+
 const StatusPages = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [statusList, setStatusList] = useState([]);
+    const [time, setTime] = useState(12000);
+
+    const refresh = () => { 
+        window.location.reload();
+    };
+
+    useEffect(() => {
+        let counter = 0;
+        let interval;
+        if (interval !== 0) {
+            const interval = setInterval(() => 
+                setTime(interval),
+                counter++, 
+            1000);
+            if (interval === 60000) {
+                setTime(60000);
+                refresh();
+            }
+        }
+        return () => {
+            clearInterval(interval);
+        }
+    }, [time]);
 
     const fetchStatusPages = async () => {
         const promiseArray = exchanges.map((url) => axios.get(url));
@@ -34,21 +64,43 @@ const StatusPages = () => {
         fetchStatusPages();
     }, []);
 
-    const statusPagesList = () =>
-        statusList.map((sp) => (
-            <StatusItem
-                name={sp?.page?.name}
-                description={sp?.status?.description}
-                updated_at={sp?.page?.updated_at}
-                url={sp?.page?.url}
-                color={checkStatus(sp?.status?.description) ? "green" : "red"}
-                icon={checkStatus(sp?.status?.description) ? "check" : "ban"}
-            />
-        ));
+    const statusPagesList = () => (
+        <div className="ui grid container">
+            {statusList.map((sp) => (
+                <StatusItem
+                    name={sp?.page?.name}
+                    description={sp?.status?.description}
+                    updated_at={sp?.page?.updated_at}
+                    url={sp?.page?.url}
+                    color={checkStatus(sp?.status?.description) ? 'green' : 'red'}
+                    icon={checkStatus(sp?.status?.description) ? 'check' : 'ban'}
+                />
+            ))}
+        </div>
+    );
+
+    const refreshHeader = () => (
+        <div class="ui one column grid">
+            <div class="column">
+                <div class="ui segment" style={style}>
+                    <div className="ui header">
+                        Page auto-refreshes every 5 minutes
+                    </div>
+                    <div class="ui vertical animated primary button" tabindex="0" onClick={() => refresh()}>
+                        <div class="hidden content">Refresh</div>
+                        <div class="visible content">
+                            <i class="sync icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 
     if (isLoading) return <Loader />;
     return (
-        <div className="ui grid container">
+        <div>
+            {refreshHeader()}
             {statusPagesList()}
         </div>
     );
