@@ -23,14 +23,15 @@ const StatusPages = () => {
     };
 
     useEffect(() => {
-        let counter = time;
-        const interval = setInterval(() => 
-            setTime(interval), 
-            counter++, 
-        1000);
-        if (interval === 60000) {
-            setTime(0);
-            refresh();
+        let interval;
+        if (interval !== 0) {
+            const interval = setInterval(() => 
+                setTime(interval), 
+            1000);
+            if (interval === 60000) {
+                setTime(0);
+                refresh();
+            }
         }
         return () => {
             clearInterval(interval);
