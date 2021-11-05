@@ -46,7 +46,7 @@ const StatusPages = () => {
 
     if (isLoading) return <Loader />;
     return (
-        <div className="ui centered grid container">
+        <div className="ui grid container">
             {statusPagesList()}
         </div>
     );

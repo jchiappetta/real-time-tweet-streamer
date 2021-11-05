@@ -10,6 +10,7 @@ const style = {
     padding: 4 
 };
 
+// TODO : Add another item for each exchanges links (Homepage, Twitter, Support, etc.)
 const StatusItem = ({ name, description, updated_at, url, color, icon }) => (
     <div className="ui four wide column">
         <div className="ui list">
