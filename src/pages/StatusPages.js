@@ -5,6 +5,7 @@ import Loader from '../components/Loader';
 import exchanges from '../constants/exchanges';
 
 // TODO : add a refresh interval and/or button to refresh the status
+// TODO : add a separate axios request for bitfinex -> https://api-pub.bitfinex.com/v2/platform/status
 const StatusPages = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [statusList, setStatusList] = useState([]);
