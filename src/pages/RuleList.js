@@ -1,5 +1,5 @@
-import React, { useEffect, useReducer } from 'react';
 import axios from 'axios';
+import React, { useEffect, useReducer } from 'react';
 import Rule from '../components/Rule';
 import ErrorMessage from '../components/ErrorMessage';
 import Spinner from '../components/Spinner';
