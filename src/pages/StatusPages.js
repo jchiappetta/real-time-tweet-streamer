@@ -16,28 +16,25 @@ const style = {
 const StatusPages = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [statusList, setStatusList] = useState([]);
-    const [time, setTime] = useState(12000);
+    const [time, setTime] = useState(0);
 
     const refresh = () => { 
         window.location.reload();
     };
 
     useEffect(() => {
-        let counter = 0;
-        let interval;
-        if (interval !== 0) {
-            const interval = setInterval(() => 
-                setTime(interval),
-                counter++, 
-            1000);
-            if (interval === 60000) {
-                setTime(60000);
-                refresh();
-            }
+        let counter = time;
+        const interval = setInterval(() => 
+            setTime(interval), 
+            counter++, 
+        1000);
+        if (interval === 60000) {
+            setTime(0);
+            refresh();
         }
         return () => {
             clearInterval(interval);
-        }
+        };
     }, [time]);
 
     const fetchStatusPages = async () => {
