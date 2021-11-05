@@ -24,7 +24,7 @@ const StatusPages = () => {
     };
 
     const checkStatus = (description) => {
-        if (description !== 'All Systems Operational') {
+        if (description === 'All Systems Operational') {
             return true;
         };
         return false;
@@ -41,8 +41,8 @@ const StatusPages = () => {
                 description={sp?.status?.description}
                 updated_at={sp?.page?.updated_at}
                 url={sp?.page?.url}
-                color={checkStatus(sp?.status?.description) ? "red" :"green"}
-                icon={checkStatus(sp?.status?.description) ? "ban" : "check"}
+                color={checkStatus(sp?.status?.description) ? "green" : "red"}
+                icon={checkStatus(sp?.status?.description) ? "check" : "ban"}
             />
         ));
 
