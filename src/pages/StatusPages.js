@@ -4,6 +4,7 @@ import StatusItem from '../components/StatusItem';
 import Loader from '../components/Loader';
 import exchanges from '../constants/exchanges';
 
+// TODO : add a refresh interval and/or button to refresh the status
 const StatusPages = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [statusList, setStatusList] = useState([]);
