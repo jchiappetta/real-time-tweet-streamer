@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import StatusItem from '../components/StatusItem';
 import Loader from '../components/Loader';
 import exchanges from '../constants/exchanges';
+import { fetchCoins, fetchExchangesV3 } from '../services';
 
 const style = { 
     display: 'flex', 
@@ -58,7 +59,24 @@ const StatusPages = () => {
         return false;
     };
 
-    useEffect(() => { 
+    // eslint-disable-next-line
+    const fetchExchangesData = async (id) => {
+        const data = await fetchExchangesV3(id);
+        console.log(data);
+        return data;
+    };
+
+    // eslint-disable-next-line
+    const fetchCoinsData = async () => {
+        const response = await fetchCoins();
+        console.log(response);
+        return response;
+    }
+
+    useEffect(() => {
+        // fetchCoinsData();
+        // fetchExchangesData(); // all 100 exchanges
+        // fetchExchangesData('kraken'); // by exchange ID
         fetchStatusPages();
     }, []);
 
@@ -78,16 +96,16 @@ const StatusPages = () => {
     );
 
     const refreshHeader = () => (
-        <div class="ui one column grid">
-            <div class="column">
-                <div class="ui segment" style={style}>
+        <div className="ui one column grid">
+            <div className="column">
+                <div className="ui segment" style={style}>
                     <div className="ui header">
                         Page auto-refreshes every 5 minutes
                     </div>
-                    <div class="ui vertical animated primary button" tabindex="0" onClick={() => refresh()}>
-                        <div class="hidden content">Refresh</div>
-                        <div class="visible content">
-                            <i class="sync icon"></i>
+                    <div className="ui vertical animated primary button" tabindex="0" onClick={() => refresh()}>
+                        <div className="hidden content">Refresh</div>
+                        <div className="visible content">
+                            <i className="sync icon"></i>
                         </div>
                     </div>
                 </div>
