@@ -6,7 +6,7 @@ export const fetchExchanges = async () => {
         const { data } = await axios.get(`https://coingecko.p.rapidapi.com/exchanges`, {
             headers: {
                 'x-rapidapi-host': 'coingecko.p.rapidapi.com',
-                'x-rapidapi-key': '9d782861femsh4556f1bd65eabb9p10404ejsn0c0b9f615507',
+                'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
         }});
         return data;
     } catch (error) {
@@ -34,7 +34,7 @@ export const fetchCoins = async () => {
         const response = await axios.get(`https://coinranking1.p.rapidapi.com/coins`, {
             headers: {
             'x-rapidapi-host': 'coinranking1.p.rapidapi.com',
-            'x-rapidapi-key': '9d782861femsh4556f1bd65eabb9p10404ejsn0c0b9f615507',
+            'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
         }});
         return response.data;
     } catch (error) {
