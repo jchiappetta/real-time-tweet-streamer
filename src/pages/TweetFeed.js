@@ -3,6 +3,9 @@ import socketIOClient from 'socket.io-client';
 import Tweet from '../components/Tweet';
 import ErrorMessage from '../components/ErrorMessage';
 import Spinner from '../components/Spinner';
+import { usePathname } from '../hooks/usePathname'; 
+import { useAppContext } from '../contexts/AppContext';
+import twitterLogo from '../images/Twitter_Logo_Blue.png';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -26,6 +29,21 @@ const reducer = (state, action) => {
 };
 
 const TweetFeed = () => {
+    const { setPage } = useAppContext();
+    const location = usePathname();
+
+    useEffect(() => {
+        if (location === '/tweets') {
+            setPage({
+                path: location,
+                title: "Real Time Tweet Streamer",
+                subHeader: "Powered by Twitter data",
+                icon: twitterLogo
+            });
+        }
+        // eslint-disable-next-line 
+    }, []);
+
     const initialState = {
         tweets: [],
         error: {},

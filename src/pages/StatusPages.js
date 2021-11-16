@@ -4,6 +4,9 @@ import StatusItem from '../components/StatusItem';
 import Loader from '../components/Loader';
 import exchanges from '../constants/exchanges';
 import { fetchCoins, fetchExchangesV3 } from '../services';
+import { usePathname } from '../hooks/usePathname'; 
+import { useAppContext } from '../contexts/AppContext';
+import statusLogo from '../images/Status_Logo_Green.png';
 
 const style = { 
     display: 'flex', 
@@ -18,6 +21,21 @@ const StatusPages = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [statusList, setStatusList] = useState([]);
     const [time, setTime] = useState(0);
+    const { setPage } = useAppContext();
+    const location = usePathname();
+    
+    useEffect(() => {
+        console.log(location);
+        if (location === '/' || location === '/status') {
+            setPage({
+                path: location,
+                title: 'Exchange Status Page', 
+                subHeader: 'Powered by Exchange data', 
+                icon: statusLogo
+            });
+        }
+        // eslint-disable-next-line 
+    }, []);
 
     const refresh = () => { 
         window.location.reload();

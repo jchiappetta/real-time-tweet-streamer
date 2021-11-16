@@ -4,21 +4,11 @@ import Navbar from './components/Navbar';
 import TweetFeed from './pages/TweetFeed';
 import RuleList from './pages/RuleList';
 import StatusPages from './pages/StatusPages';
+import Header from './components/Header';
 
 const App = () => (
     <div className="ui container">
-        <div className="introduction"></div>
-        <h1 className="ui header">
-            <img
-                className="ui image"
-                src="/Twitter_Logo_Blue.png"
-                alt="Twitter Logo"
-            />
-            <div className="content">
-                Real Time Tweet Streamer
-                <div className="sub header">Powered by Twitter data</div>
-            </div>
-        </h1>
+        <Header />
         <div className="ui container">
             <Router>
                 <Navbar />
