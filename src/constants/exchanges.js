@@ -7,5 +7,5 @@ export default [
   "https://status.deribit.com/api/v2/status.json",
   "https://status.gemini.com/api/v2/status.json",
   "https://status.huobigroup.com/api/v2/status.json",
-  "https://kraken.statuspage.io/api/v2/status.json",
+  "https://status.kraken.com/api/v2/status.json",
 ];
