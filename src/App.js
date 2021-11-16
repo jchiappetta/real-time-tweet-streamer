@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import Header from './components/Header';
 import Navbar from './components/Navbar';
+import StatusPages from './pages/StatusPages';
 import TweetFeed from './pages/TweetFeed';
 import RuleList from './pages/RuleList';
-import StatusPages from './pages/StatusPages';
-import Header from './components/Header';
 
 const App = () => (
     <div className="ui container">
