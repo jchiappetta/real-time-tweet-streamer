@@ -28,7 +28,7 @@ const StatusPages = () => {
         if (location === '/' || location === '/status') {
             setPage({
                 path: location,
-                title: 'Exchange Status Page', 
+                title: 'Exchange Status Pages', 
                 subHeader: 'Powered by Exchange data', 
                 icon: statusLogo
             });
