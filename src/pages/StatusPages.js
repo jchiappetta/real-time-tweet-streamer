@@ -25,7 +25,6 @@ const StatusPages = () => {
     const location = usePathname();
     
     useEffect(() => {
-        console.log(location);
         if (location === '/' || location === '/status') {
             setPage({
                 path: location,
