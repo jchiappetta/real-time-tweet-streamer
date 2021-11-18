@@ -10,9 +10,24 @@ const initialState = {
 };
 
 export const AppContextProvider = (props) => {
+    const [isLoading, setIsLoading] = useState(true);
+    const [statusList, setStatusList] = useState([]);
+    const [time, setTime] = useState(0);
     const [page, setPage] = useState(initialState);
+
+    const value = {
+        isLoading, 
+        setIsLoading,
+        statusList, 
+        setStatusList,
+        time, 
+        setTime,
+        page, 
+        setPage
+    };
+
     return (
-        <AppState.Provider value={{ page, setPage }}>
+        <AppState.Provider value={value}>
             {props.children}
         </AppState.Provider>
     );

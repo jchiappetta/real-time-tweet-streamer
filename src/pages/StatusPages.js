@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import StatusItem from '../components/StatusItem';
 import Loader from '../components/Loader';
 import exchanges from '../constants/exchanges';
@@ -7,6 +7,7 @@ import { fetchCoins, fetchExchangesV3 } from '../services';
 import { usePathname } from '../hooks/usePathname'; 
 import { useAppContext } from '../contexts/AppContext';
 import statusLogo from '../images/Status_Logo_Green.png';
+import StatusCard from '../components/StatusCard';
 
 const style = { 
     display: 'flex', 
@@ -18,10 +19,16 @@ const style = {
 };
 
 const StatusPages = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [statusList, setStatusList] = useState([]);
-    const [time, setTime] = useState(0);
-    const { setPage } = useAppContext();
+    const {     
+        isLoading, 
+        setIsLoading,
+        statusList, 
+        setStatusList,
+        time, 
+        setTime,
+        setPage 
+    } = useAppContext();
+
     const location = usePathname();
     
     useEffect(() => {
@@ -52,8 +59,10 @@ const StatusPages = () => {
             }
         }
         return () => {
+            setTime(0);
             clearInterval(interval);
         };
+        // eslint-disable-next-line
     }, [time]);
 
     const fetchStatusPages = async () => {
@@ -93,10 +102,28 @@ const StatusPages = () => {
     useEffect(() => {
         // fetchCoinsData();
         // fetchExchangesData(); // all 100 exchanges
-        // fetchExchangesData('kraken'); // by exchange ID
+        // fetchExchangesData('okcoin'); // by exchange ID
         fetchStatusPages();
+        // eslint-disable-next-line
     }, []);
 
+    // eslint-disable-next-line
+    const statusPagesCards = () => (
+        <div className="ui four column grid container">
+            {statusList.map((sp) => (
+                <StatusCard
+                    name={sp?.page?.name}
+                    description={sp?.status?.description}
+                    updated_at={sp?.page?.updated_at}
+                    url={sp?.page?.url}
+                    color={checkStatus(sp?.status?.description) ? 'green' : 'red'}
+                    icon={checkStatus(sp?.status?.description) ? 'check' : 'ban'}
+                />
+            ))}
+        </div>
+    );
+
+    // eslint-disable-next-line
     const statusPagesList = () => (
         <div className="ui grid container">
             {statusList.map((sp) => (
@@ -119,7 +146,7 @@ const StatusPages = () => {
                     <div className="ui header">
                         Page auto-refreshes every 5 minutes
                     </div>
-                    <div className="ui vertical animated primary button" tabindex="0" onClick={() => refresh()}>
+                    <div className="ui large vertical animated primary button" tabindex="0" onClick={() => refresh()}>
                         <div className="hidden content">Refresh</div>
                         <div className="visible content">
                             <i className="sync icon"></i>
@@ -132,9 +159,9 @@ const StatusPages = () => {
 
     if (isLoading) return <Loader />;
     return (
-        <div>
+        <div style={{ paddingBottom: '6vh' }}>
             {refreshHeader()}
-            {statusPagesList()}
+            {statusPagesCards()}
         </div>
     );
 };
